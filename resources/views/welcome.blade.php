@@ -14,13 +14,14 @@
 
     </head>
     <body>
-        <form method="GET" action="{{ route('send_request') }}" id="js-message-form" class="message-form">
-            <div class="center-group">
-                <input id="js-message-input" name="message" type="text" name="message">
-                <input id="js-message-submit" type="submit" value="Stuur">
-            </div>
-        </form>
-        
+        <div id="app" class="app">
+            <form id="js-message-form" class="message-form">
+                <div class="center-group">
+                    <input v-model="message" type="text">
+                    <input v-on:click='sendRequest($event)' type="submit" value="Stuur">
+                </div>
+            </form>
+        </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

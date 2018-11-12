@@ -6,18 +6,39 @@
  */
 
 require('./bootstrap');
+require('axios');
+window.Vue = require('vue');
 
-// $('#js-message-form').submit(function(event){
-//     event.preventDefault();
-//     var message = $('#js-message-input').val();
-//     console.log(message);
-// });
+new Vue({
+	el: '#app',
+	
+	data(){
+		return {
+			message: ''
+		}
+	},
 
-function sendMessage(text, context){
-    // stuur bericht naar Watson
-    
-}
+    methods: {
+        sendRequest: function(e){
+            e.preventDefault();
+            var options = {
+                method: 'POST',
+                url: '/watson',
+                json: true,
+                data: {
+                    input: {
+                        text: this.message
+                    }
+                }
+            }
 
-function renderMessage(){
-    // poep response uit
-}
+            if (this.message != '') {
+                axios(options)
+                    .then(function(response){
+                        var text = response.data.output.text;
+                        console.log(text);
+                    });
+            }
+        }
+    },
+});
