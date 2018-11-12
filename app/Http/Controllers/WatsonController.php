@@ -10,7 +10,6 @@ class WatsonController extends Controller
         // Make a request message for Watson API in json
         $data['input']['text'] = $request->input['text'];
 
-        // Encode json data
         $json = json_encode($data);
 
         // Post the json to Watson Assistant API via cURL

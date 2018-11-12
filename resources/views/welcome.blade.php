@@ -15,6 +15,9 @@
     </head>
     <body>
         <div id="app" class="app">
+            <div v-for="message in messages" class="message" :class="message.status">
+                @{{message.text}}
+            </div>
             <form id="js-message-form" class="message-form">
                 <div class="center-group">
                     <input v-model="message" type="text">

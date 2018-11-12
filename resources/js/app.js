@@ -14,7 +14,8 @@ new Vue({
 	
 	data(){
 		return {
-			message: ''
+            message: '',
+            messages: []
 		}
 	},
 
@@ -32,11 +33,20 @@ new Vue({
                 }
             }
 
+            this.messages.push({
+                'text': this.message,
+                'status': 'sent'
+            });
+
+            var _this = this;
+
             if (this.message != '') {
                 axios(options)
                     .then(function(response){
-                        var text = response.data.output.text;
-                        console.log(text);
+                        _this.messages.push({
+                            'text': response.data.output.text[0],
+                            'status': 'received'
+                        });
                     });
             }
         }
