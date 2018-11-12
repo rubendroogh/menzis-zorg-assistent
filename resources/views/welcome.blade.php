@@ -14,9 +14,11 @@
 
     </head>
     <body>
-        <form id="js-message-form">
-            <input id="js-message-input" type="text" name="message">
-            <input id="js-message-submit" type="submit" value="Stuur">
+        <form id="js-message-form" class="message-form">
+            <div class="center-group">
+                <input id="js-message-input" type="text" name="message">
+                <input id="js-message-submit" type="submit" value="Stuur">
+            </div>
         </form>
         
         <script src="{{ asset('js/app.js') }}"></script>
