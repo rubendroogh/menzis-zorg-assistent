@@ -14,9 +14,9 @@
 
     </head>
     <body>
-        <form id="js-message-form" class="message-form">
+        <form method="GET" action="{{ route('send_request') }}" id="js-message-form" class="message-form">
             <div class="center-group">
-                <input id="js-message-input" type="text" name="message">
+                <input id="js-message-input" name="message" type="text" name="message">
                 <input id="js-message-submit" type="submit" value="Stuur">
             </div>
         </form>

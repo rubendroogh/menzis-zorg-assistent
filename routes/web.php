@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/watson', 'WatsonController@send_request')->name('send_request');
