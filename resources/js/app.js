@@ -7,16 +7,31 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// $('#js-message-form').submit(function(event){
+//     event.preventDefault();
+//     var message = $('#js-message-input').val();
+//     console.log(message);
+// });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+connectToWatson();
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+function connectToWatson(){
+    
+}
 
-const app = new Vue({
-    el: '#app'
+var AssistantV1 = require('watson-developer-cloud/assistant/v1');
+
+var assistant = new AssistantV1({
+    version: '2018-09-20',
+    iam_apikey: 'PZyDAuxKrJv2tLPg6r8JZRKOnPMJFk6YCkjKxxrZ5bdr',
+    url: 'https://gateway-fra.watsonplatform.net/assistant/api/v1/workspaces/1ac057b8-0634-4c6a-b8e5-ec8a46e1da57/message/'
 });
+
+function sendMessage(text, context){
+    // stuur bericht naar Watson
+    
+}
+
+function renderMessage(){
+    // poep response uit
+}

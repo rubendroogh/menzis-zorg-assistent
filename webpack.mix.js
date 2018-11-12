@@ -13,3 +13,28 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+
+var path = require('path');
+
+module.exports = {
+  entry: 'index',
+  target: 'node',
+  output: {
+    path: path.join(__dirname, 'scripts'),
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      { test: /\.json$/, loader: 'json-loader' }
+    ]
+  },
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.js']
+  },
+  node: {
+    console: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
+};
