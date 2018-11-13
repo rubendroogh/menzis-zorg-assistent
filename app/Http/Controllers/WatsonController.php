@@ -16,7 +16,7 @@ class WatsonController extends Controller
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL, 'https://gateway-fra.watsonplatform.net/assistant/api/v1/workspaces/' . env('WATSON_WORKSPACE_ID') . '/message?version=' . env('WATSON_VERSION'));
+        curl_setopt($ch, CURLOPT_URL, 'https://gateway-' . env('WATSON_LOCATION') . '.watsonplatform.net/assistant/api/v1/workspaces/' . env('WATSON_WORKSPACE_ID') . '/message?version=' . env('WATSON_VERSION'));
         curl_setopt($ch, CURLOPT_USERPWD, env('WATSON_USERNAME') . ":" . env('WATSON_PASSWORD')); // Set cURL Watson Assistant credentials
         curl_setopt($ch, CURLOPT_POST, true );
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); // Set cURL headers
@@ -26,6 +26,6 @@ class WatsonController extends Controller
         $result = trim(curl_exec($ch)); // Prepare response
         curl_close($ch); // Close
 
-        return response()->json(json_decode($result));
+        return $result;
     }
 }

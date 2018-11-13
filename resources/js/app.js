@@ -47,6 +47,7 @@ new Vue({
                             'text': response.data.output.text[0],
                             'status': 'received'
                         });
+                        _this.message = '';
                     });
             }
         }
