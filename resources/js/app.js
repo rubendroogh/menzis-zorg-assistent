@@ -67,8 +67,6 @@ new Vue({
 
                 this.message = '';
 
-                this.scrollToBottom();
-
                 var _this = this;
 
                 axios(options)
@@ -79,11 +77,11 @@ new Vue({
                         });
                     });
             }
-            this.scrollToBottom();
-        },
-        scrollToBottom: function (){
-            var container = this.$el;
-            container.scrollTop = container.scrollHeight;
         }
     },
+
+    updated(){
+        var container = document.getElementById('app');
+        container.scrollTop = container.scrollHeight;
+    }
 });

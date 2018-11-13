@@ -13962,8 +13962,6 @@ new Vue({
 
                 this.message = '';
 
-                this.scrollToBottom();
-
                 var _this = this;
 
                 axios(options).then(function (response) {
@@ -13973,12 +13971,12 @@ new Vue({
                     });
                 });
             }
-            this.scrollToBottom();
-        },
-        scrollToBottom: function scrollToBottom() {
-            var container = this.$el;
-            container.scrollTop = container.scrollHeight;
         }
+    },
+
+    updated: function updated() {
+        var container = document.getElementById('app');
+        container.scrollTop = container.scrollHeight;
     }
 });
 
