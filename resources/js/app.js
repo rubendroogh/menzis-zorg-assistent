@@ -31,16 +31,18 @@ new Vue({
                         text: this.message
                     }
                 }
-            }
+            };
 
             this.messages.push({
                 'text': this.message,
                 'status': 'sent'
             });
 
+            this.scrollToBottom();
+
             var _this = this;
 
-            if (this.message != '') {
+            if (this.message !== '') {
                 axios(options)
                     .then(function(response){
                         _this.messages.push({
@@ -50,6 +52,11 @@ new Vue({
                         _this.message = '';
                     });
             }
+            this.scrollToBottom();
+        },
+        scrollToBottom: function () {
+            var container = this.$el;
+            container.scrollTop = container.scrollHeight;
         }
     },
 });
