@@ -13914,38 +13914,63 @@ new Vue({
             messages: []
         };
     },
+    created: function created() {
+        var options = {
+            method: 'POST',
+            url: '/watson',
+            json: true,
+            data: {
+                input: {
+                    text: ''
+                }
+            }
+        };
+
+        var _this = this;
+
+        axios(options).then(function (response) {
+            _this.messages.push({
+                'text': response.data.output.text[0],
+                'status': 'received'
+            });
+            _this.message = '';
+        });
+    },
 
 
     methods: {
         sendRequest: function sendRequest(e) {
             e.preventDefault();
-            var options = {
-                method: 'POST',
-                url: '/watson',
-                json: true,
-                data: {
-                    input: {
-                        text: this.message
-                    }
-                }
-            };
-
-            this.messages.push({
-                'text': this.message,
-                'status': 'sent'
-            });
-
-            this.scrollToBottom();
-
-            var _this = this;
 
             if (this.message !== '') {
+
+                var options = {
+                    method: 'POST',
+                    url: '/watson',
+                    json: true,
+                    data: {
+                        input: {
+                            text: this.message
+                        }
+                    }
+                };
+
+                this.messages.push({
+                    'text': this.message,
+                    'status': 'sent'
+                });
+
+                this.message = '';
+
+                this.scrollToBottom();
+
+                var _this = this;
+
                 axios(options).then(function (response) {
                     _this.messages.push({
                         'text': response.data.output.text[0],
                         'status': 'received'
                     });
-                    _this.message = '';
                 });
             }
             this.scrollToBottom();

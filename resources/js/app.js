@@ -17,44 +17,71 @@ new Vue({
             message: '',
             messages: []
 		}
-	},
+    },
+    
+    created(){
+        var options = {
+            method: 'POST',
+            url: '/watson',
+            json: true,
+            data: {
+                input: {
+                    text: ''
+                }
+            }
+        }
+
+        var _this = this;
+
+        axios(options)
+            .then(function(response){
+                _this.messages.push({
+                    'text': response.data.output.text[0],
+                    'status': 'received'
+                });
+                _this.message = '';
+            });
+    },
 
     methods: {
         sendRequest: function(e){
             e.preventDefault();
-            var options = {
-                method: 'POST',
-                url: '/watson',
-                json: true,
-                data: {
-                    input: {
-                        text: this.message
+            
+            if (this.message !== '') {
+
+                var options = {
+                    method: 'POST',
+                    url: '/watson',
+                    json: true,
+                    data: {
+                        input: {
+                            text: this.message
+                        }
                     }
                 }
-            };
 
-            this.messages.push({
-                'text': this.message,
-                'status': 'sent'
-            });
+                this.messages.push({
+                    'text': this.message,
+                    'status': 'sent'
+                });
 
-            this.scrollToBottom();
+                this.message = '';
 
-            var _this = this;
+                this.scrollToBottom();
 
-            if (this.message !== '') {
+                var _this = this;
+
                 axios(options)
                     .then(function(response){
                         _this.messages.push({
                             'text': response.data.output.text[0],
                             'status': 'received'
                         });
-                        _this.message = '';
                     });
             }
             this.scrollToBottom();
         },
-        scrollToBottom: function () {
+        scrollToBottom: function (){
             var container = this.$el;
             container.scrollTop = container.scrollHeight;
         }

@@ -10477,32 +10477,46 @@ body {
 
 .app {
   max-width: 600px;
-  height: 100%;
+  height: calc(100% - 5rem);
   width: 100%;
   overflow-y: auto;
-  padding: 0 .5rem 4rem .5rem;
+  padding: 0 .5rem;
   margin: 0 auto;
 }
 
 .message-form {
   width: 100%;
-  height: auto;
+  height: 3rem;
   position: fixed;
-  bottom: 0;
+  bottom: 1rem;
   left: 0;
-  padding: 1rem;
-  background-color: aquamarine;
 }
 
 .center-group {
   width: 100%;
-  height: auto;
+  height: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
 .center-group input[type='text'] {
   width: 80%;
+  height: 3rem;
+  border-radius: 1.5rem;
+  border: none;
+  padding: 1rem;
+}
+
+.center-group input[type='submit'] {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+}
+
+.center-group input {
+  outline: none;
 }
 
 .message {
@@ -10527,12 +10541,12 @@ body {
   left: 10px;
   width: 0;
   height: 0;
-  border: 15px solid transparent;
+  border: 10px solid transparent;
   border-top-color: #0dffe1;
   border-bottom: 0;
   border-left: 0;
   margin-left: -10px;
-  margin-bottom: -15px;
+  margin-bottom: -10px;
 }
 
 .message.sent {
@@ -10550,11 +10564,11 @@ body {
   right: 0;
   width: 0;
   height: 0;
-  border: 15px solid transparent;
+  border: 10px solid transparent;
   border-top-color: whitesmoke;
   border-bottom: 0;
   border-right: 0;
   margin-left: -10px;
-  margin-bottom: -15px;
+  margin-bottom: -10px;
 }
 
