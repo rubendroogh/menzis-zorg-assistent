@@ -15,7 +15,8 @@ new Vue({
 	data(){
 		return {
             message: '',
-            messages: []
+            messages: [],
+            context: {}
 		}
     },
     
@@ -25,6 +26,7 @@ new Vue({
             url: '/watson',
             json: true,
             data: {
+                context: this.context,
                 input: {
                     text: ''
                 }
@@ -40,6 +42,7 @@ new Vue({
                     'status': 'received'
                 });
                 _this.message = '';
+                _this.context = response.data.context;
             });
     },
 
@@ -54,6 +57,7 @@ new Vue({
                     url: '/watson',
                     json: true,
                     data: {
+                        context: this.context,
                         input: {
                             text: this.message
                         }
@@ -75,6 +79,7 @@ new Vue({
                             'text': response.data.output.text[0],
                             'status': 'received'
                         });
+                        _this.context = response.data.context;
                     });
             }
         }

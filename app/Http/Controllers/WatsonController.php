@@ -9,8 +9,11 @@ class WatsonController extends Controller
     public function send_request(Request $request){
         // Make a request message for Watson API in json
         $data['input']['text'] = $request->input['text'];
-
-        $json = json_encode($data);
+        if ($request->context) {
+            $data['context'] = $request->context;
+        }
+        
+        $json = json_encode($data);        
 
         // Post the json to Watson Assistant API via cURL
         $ch = curl_init();
