@@ -75,13 +75,19 @@ new Vue({
 
                 axios(options)
                     .then(function(response){
-                        _this.messages.push({
-                            'text': response.data.output.text[0],
-                            'status': 'received'
-                        });
+                        console.log(response.data);
+                        _this.pushMessages(response.data.output, 'received');
                         _this.context = response.data.context;
                     });
             }
+        },
+        pushMessages: function(output, status) {
+            output.text.forEach(text => {
+                this.messages.push({
+                    'text': text,
+                    'status': status
+                });
+            });
         }
     },
 

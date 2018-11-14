@@ -13969,13 +13969,21 @@ new Vue({
                 var _this = this;
 
                 axios(options).then(function (response) {
-                    _this.messages.push({
-                        'text': response.data.output.text[0],
-                        'status': 'received'
-                    });
+                    console.log(response.data);
+                    _this.pushMessages(response.data.output, 'received');
                     _this.context = response.data.context;
                 });
             }
+        },
+        pushMessages: function pushMessages(output, status) {
+            var _this2 = this;
+
+            output.text.forEach(function (text) {
+                _this2.messages.push({
+                    'text': text,
+                    'status': status
+                });
+            });
         }
     },
 
