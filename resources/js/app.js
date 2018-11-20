@@ -75,9 +75,10 @@ new Vue({
 
                 axios(options)
                     .then(function(response){
-                        console.log(response.data);
                         _this.pushMessages(response.data.output, 'received');
-                        _this.context = response.data.context;
+                        if (!response.data.context.system.branch_exited && response.data.context.system.branch_exited_reason != 'fallback' ) {
+                            _this.context = response.data.context;
+                        }
                     });
             }
         },
